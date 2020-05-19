@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-content>
+        <v-container>
+          <v-row>
+
+            <v-col class="text-center" cols="12" xs="12" md="3">
+              <v-list class="d-flex flex-column">
+                <v-list-item-avatar size="150">
+                  <img src="perfil.svg" alt="cdmngz">
+                </v-list-item-avatar>
+                <v-list-item class="ml-n3">
+                  <v-list-item-content>
+                    <v-list-item-title class="font-weight-bold title">Carlos Domínguez</v-list-item-title>
+                    <v-list-item-subtitle class="font-weight-light">Software Engineer</v-list-item-subtitle>
+                    <v-list-item-subtitle class="font-weight-light mt-5"><v-icon>mdi-gmail</v-icon>crlsdmngz3@gmail.com</v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-col>
+
+            <v-divider vertical></v-divider>
+            
+            <v-col row wrap class="mt-12" cols="12" xs="12" md="8">
+              <br><br>
+              <v-row class="ml-3 mb-6 mt-12" row wrap>
+                <v-slider
+                  track-color="yellow"
+                  v-model="value"
+                  color="lime"
+                  thumb-label
+                  :thumb-size="130"
+                  thumb-color="none"
+                  :tick-labels="ticksLabels"
+                  tick-size="4"
+                  :max="10"
+                  ticks="always"
+                  step="1"
+                >
+                  <template v-slot:thumb-label="item">
+                    <v-card class="d-flex flex-no-wrap" width="300">
+                      <v-avatar
+                        class="ml-3 mt-4"
+                        size="32"
+                        tile
+                      >
+                        <v-img :src="array[value].imagen" alt="https://www.flaticon.es/autores/nikita-golubev"></v-img>
+                      </v-avatar>
+                      <v-card-title>{{array[value].titulo}}</v-card-tile>
+                      <v-card-text>{{array[value].subtitulo}}</v-card-text>
+                    </v-card>
+                  </template>
+                </v-slider>
+              </v-row>
+
+              <v-row no-gutters>
+                <v-col v-for="(item, label, index) in array[value].lang" cols="12" xs="12" class="ma-3">
+                  <div cols="12" xs="12">
+                    <p class="font-weight-light mb-1">{{ label }}</p>
+                    <v-progress-linear height="5" :value="item" color="lime" rounded></v-progress-linear>
+                  </div>
+                </v-col>
+              </v-row>           
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data: {
+        value: 0,
+        ticksLabels: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
+        array: [
+          {
+            imagen: 'cerebro.svg',
+            titulo: 'Universidad',
+            subtitulo: 'Proyectos en C++',
+            desc: 'Descripciones aleatorias',
+            lang: { C: 10, Java: 10, Js: 5, MySql: 5, php: 10, python: 5 }
+          },
+          {
+            imagen: 'sensible.svg',
+            titulo: 'FullStack Developer',
+            subtitulo: 'Lex-Tempus',
+            desc: 'Descripciones aleatorias',
+            lang: { C: 15, Java: 15, Js: 10, MySql: 10, php: 20, python: 5 }
+          },
+          {
+            imagen: 'codigo.svg',
+            subtitulo: 'Ingeniero de Software',
+            titulo: 'Título',
+            desc: 'Descripciones aleatorias',
+            lang: { C: 20, Java: 20, Js: 15, MySql: 20, php: 25, python: 5 }
+          },
+          {
+            imagen: 'travel.svg',
+            titulo: 'Mochileando',
+            subtitulo: 'Año sabático por Bra y Ven', 
+            desc: 'Descripciones aleatorias',
+            lang: { C: 20, Java: 20, Js: 15, MySql: 20, php: 25, python: 5 } },
+          {
+            imagen: 'bug.svg',
+            subtitulo: 'HyperPBX',
+            titulo: 'FullStack Developer',
+            desc: 'Descripciones aleatorias',
+            lang: { C: 23, Git: 15, Java: 25, Js: 30, MySql: 40, php: 50, python: 5 } },
+          {
+            imagen: 'bug.svg',
+            subtitulo: 'HyperPBX',
+            titulo: 'FullStack Developer',
+            desc: 'Descripciones aleatorias',
+            lang: { C: 35, Git: 30, Java: 40, Js: 60, MySql: 60, php: 70, python: 5 } },
+          {
+            imagen: 'travel2.svg',
+            titulo: 'Mochileando',
+            subtitulo: 'Año sabático por Arg, Bra y Cl',
+            desc: 'Descripciones aleatorias',
+            lang: { C: 35, Git: 30, Java: 40, Js: 60, MySql: 60, php: 70, python: 5 } },
+          {
+            imagen: 'tuerca.svg',
+            subtitulo: 'Ministerio de Educación',
+            titulo: 'App Developer',
+            desc: 'Descripciones aleatorias',
+            lang: { C: 35, Git: 40, Java: 50, Js: 70, MySql: 65, php: 75, python: 15 } },
+          {
+            imagen: 'tuerca.svg',
+            subtitulo: 'Ministerio de Educación',
+            titulo: 'App Developer',
+            desc: 'Descripciones aleatorias',
+            lang: { C: 35, Git: 50, Java: 55, Js: 75, MySql: 75, php: 80, python: 30 } },
+          {
+            imagen: 'proceso.svg',
+            subtitulo: 'MundoEstudiante',
+            titulo: 'Profesor de Prog',
+            desc: 'Descripciones aleatorias',
+            lang: { C: 45, Git: 60, Java: 65, Js: 80, MySql: 75, php: 80, python: 40, Vue: 30 } },
+          {
+            imagen: 'coronavirus.svg',
+            subtitulo: 'Proyectos mevn, firebase',
+            titulo: 'CoVid-19',
+            desc: 'Descripciones aleatorias',
+            lang: { C: 60, Deno: 10, Git: 80, Java: 70, Js: 90, MySql: 80, MongoDB: 60, NodeJs: 50, php: 90, python: 80, Vue: 70 } }
+        ]
+      }
+    })
+  </script>
+</body>
+</html>

@@ -12,8 +12,7 @@
       <v-content>
         <v-container>
           <v-row>
-
-            <v-col class="text-center" cols="12" xs="12" md="3">
+            <v-col class="text-center" cols="12" xs="12" sm="3">
               <v-list class="d-flex flex-column">
                 <v-list-item-avatar size="150">
                   <img src="perfil.svg" alt="cdmngz">
@@ -22,16 +21,65 @@
                   <v-list-item-content>
                     <v-list-item-title class="font-weight-bold title">Carlos Domínguez</v-list-item-title>
                     <v-list-item-subtitle class="font-weight-light">Software Engineer</v-list-item-subtitle>
-                    <v-list-item-subtitle class="font-weight-light mt-5"><v-icon>mdi-gmail</v-icon>crlsdmngz3@gmail.com</v-list-item-subtitle>
+                    <v-list-item-subtitle class="font-weight-light mt-7"><v-icon>mdi-gmail</v-icon>crlsdmngz3@gmail.com</v-list-item-subtitle>
+                    <v-list-item-subtitle class="font-weight-bold mt-7"><u>Fluent</u></v-list-item-subtitle>
+                    <v-list class="d-flex justify-center">
+                      <v-img
+                        alt="http://www.freepik.com/"
+                        contain
+                        height="30"
+                        src="usa.svg"
+                        width="30"
+                      >
+                      </v-img>
+                      <v-img
+                        alt="http://www.freepik.com/"
+                        contain
+                        height="30"
+                        src="esp.svg"
+                        width="30"
+                      >
+                      </v-img>
+                      <v-img
+                        alt="http://www.freepik.com/"
+                        contain
+                        height="30"
+                        src="bra.svg"
+                        width="30"
+                      >
+                      </v-img>
+                    </v-list>
+                    <v-list-item-subtitle class="font-weight-bold mt-7"><u>Basic</u></v-list-item-subtitle>
+                    <v-list class="d-flex justify-center">
+                      <v-img
+                        alt="http://www.freepik.com/"
+                        contain
+                        height="30"
+                        src="it.svg"
+                        width="30"
+                      >
+                      </v-img>
+                      <v-img
+                        alt="http://www.freepik.com/"
+                        contain
+                        height="30"
+                        src="cat.svg"
+                        width="30"
+                      >
+                      </v-img>
+                    </v-list>
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
             </v-col>
-
             <v-divider vertical></v-divider>
-            
-            <v-col row wrap class="mt-12" cols="12" xs="12" md="8">
-              <br><br>
+            <v-col row wrap class="mt-2" cols="12" xs="12" sm="8">
+              <h1 class="font-italic font-weight-medium text-center grey--text text--ligthen-1">
+                <v-icon>mdi-fingerprint</v-icon>
+                <v-icon>mdi-bike</v-icon>
+                <v-icon>mdi-home-assistant</v-icon>
+              </h1>
+              <br><br><br><br>
               <v-row class="ml-3 mb-6 mt-12" row wrap>
                 <v-slider
                   track-color="yellow"
@@ -45,9 +93,10 @@
                   :max="10"
                   ticks="always"
                   step="1"
+                  :vertical="$vuetify.breakpoint.xs"
                 >
                   <template v-slot:thumb-label="item">
-                    <v-card class="d-flex flex-no-wrap" width="300">
+                    <v-card class="d-flex" width="300">
                       <v-avatar
                         class="ml-3 mt-4"
                         size="32"
@@ -56,12 +105,26 @@
                         <v-img :src="array[value].imagen" alt="https://www.flaticon.es/autores/nikita-golubev"></v-img>
                       </v-avatar>
                       <v-card-title>{{array[value].titulo}}</v-card-tile>
-                      <v-card-text>{{array[value].subtitulo}}</v-card-text>
-                    </v-card>
+                      <v-card-text
+                        class="d-flex flex-row"
+                      >
+                        {{array[value].subtitulo}}
+                      <v-img
+                          alt="http://www.freepik.com/"
+                          contain
+                          class="mt-n1"
+                          height="30"
+                          :key="index"
+                          :src="item"
+                          v-for="(item, index) in array[value].subImg"
+                          width="20"
+                          >
+                        </v-img>
+                      </v-card-text>
+                      </v-card>
                   </template>
                 </v-slider>
               </v-row>
-
               <v-row no-gutters>
                 <v-col v-for="(item, label, index) in array[value].lang" cols="12" xs="12" class="ma-3">
                   <div cols="12" xs="12">
@@ -90,72 +153,103 @@
           {
             imagen: 'cerebro.svg',
             titulo: 'Universidad',
-            subtitulo: 'Proyectos en C++',
-            desc: 'Descripciones aleatorias',
-            lang: { C: 10, Java: 10, Js: 5, MySql: 5, php: 10, python: 5 }
+            subtitulo: 'POO, SQL, 23DesignP',
+            subImg: [
+              'ven.svg',
+              ],
+            lang: { C: 20, Deno: 0, Git: 0, Java: 20, Js: 0, MySql: 10, MongoDB: 0, "NodeJs + Express": 0, php: 20, python: 0, Vue: 0 }
           },
           {
             imagen: 'sensible.svg',
             titulo: 'FullStack Developer',
             subtitulo: 'Lex-Tempus',
-            desc: 'Descripciones aleatorias',
-            lang: { C: 15, Java: 15, Js: 10, MySql: 10, php: 20, python: 5 }
+            subImg: [
+              'ven.svg',
+              ],
+            lang: { C: 30, Deno: 0, Git: 0, Java: 30, Js: 10, MySql: 20, MongoDB: 0, "NodeJs + Express": 0, php: 30, python: 0, Vue: 0 }
           },
           {
             imagen: 'codigo.svg',
             subtitulo: 'Ingeniero de Software',
             titulo: 'Título',
-            desc: 'Descripciones aleatorias',
-            lang: { C: 20, Java: 20, Js: 15, MySql: 20, php: 25, python: 5 }
+            subImg: [
+              'ven.svg',
+              ],
+            lang: { C: 40, Deno: 0, Git: 0, Java: 40, Js: 20, MySql: 30, MongoDB: 0, "NodeJs + Express": 0, php: 40, python: 0, Vue: 0 }
           },
           {
             imagen: 'travel.svg',
             titulo: 'Mochileando',
-            subtitulo: 'Año sabático por Bra y Ven', 
-            desc: 'Descripciones aleatorias',
-            lang: { C: 20, Java: 20, Js: 15, MySql: 20, php: 25, python: 5 } },
+            subImg: [
+              'bra.svg',
+              'ven.svg',
+              ],
+            lang: { C: 40, Deno: 0, Git: 0, Java: 40, Js: 20, MySql: 30, MongoDB: 0, "NodeJs + Express": 0, php: 40, python: 0, Vue: 0 }
+          },          
           {
             imagen: 'bug.svg',
-            subtitulo: 'HyperPBX',
             titulo: 'FullStack Developer',
-            desc: 'Descripciones aleatorias',
-            lang: { C: 23, Git: 15, Java: 25, Js: 30, MySql: 40, php: 50, python: 5 } },
+            subtitulo: 'HyperPBX',
+            subImg: [
+              'arg.svg',
+              ],
+            lang: { C: 50, Deno: 0, Git: 30, Java: 50, Js: 30, MySql: 40, MongoDB: 0, "NodeJs + Express": 0, php: 50, python: 0, Vue: 0 }
+          },          
           {
             imagen: 'bug.svg',
-            subtitulo: 'HyperPBX',
             titulo: 'FullStack Developer',
-            desc: 'Descripciones aleatorias',
-            lang: { C: 35, Git: 30, Java: 40, Js: 60, MySql: 60, php: 70, python: 5 } },
+            subtitulo: 'HyperPBX',
+            subImg: [
+              'arg.svg',
+              ],
+            lang: { C: 60, Deno: 0, Git: 40, Java: 60, Js: 60, MySql: 50, MongoDB: 0, "NodeJs + Express": 10, php: 60, python: 10, Vue: 0 }
+          },
           {
-            imagen: 'travel2.svg',
+            imagen: 'travel.svg',
             titulo: 'Mochileando',
-            subtitulo: 'Año sabático por Arg, Bra y Cl',
-            desc: 'Descripciones aleatorias',
-            lang: { C: 35, Git: 30, Java: 40, Js: 60, MySql: 60, php: 70, python: 5 } },
+            subImg: [
+              'arg.svg',
+              'bra.svg',
+              'chi.svg',
+              ],
+            lang: { C: 60, Deno: 0, Git: 40, Java: 60, Js: 60, MySql: 50, MongoDB: 0, "NodeJs + Express": 10, php: 60, python: 10, Vue: 0 }
+          },
           {
             imagen: 'tuerca.svg',
             subtitulo: 'Ministerio de Educación',
             titulo: 'App Developer',
-            desc: 'Descripciones aleatorias',
-            lang: { C: 35, Git: 40, Java: 50, Js: 70, MySql: 65, php: 75, python: 15 } },
+            subImg: [
+              'arg.svg',
+              ],
+            lang: { C: 60, Deno: 0, Git: 50, Java: 70, Js: 70, MySql: 60, MongoDB: 20, "NodeJs + Express": 20, php: 70, python: 30, Vue: 0 }
+          },
           {
             imagen: 'tuerca.svg',
             subtitulo: 'Ministerio de Educación',
             titulo: 'App Developer',
-            desc: 'Descripciones aleatorias',
-            lang: { C: 35, Git: 50, Java: 55, Js: 75, MySql: 75, php: 80, python: 30 } },
+            subImg: [
+              'arg.svg',
+              ],
+            lang: { C: 60, Deno: 0, Git: 60, Java: 80, Js: 80, MySql: 70, MongoDB: 30, "NodeJs + Express": 30, php: 80, python: 40, Vue: 0 }
+          },
           {
             imagen: 'proceso.svg',
             subtitulo: 'MundoEstudiante',
             titulo: 'Profesor de Prog',
-            desc: 'Descripciones aleatorias',
-            lang: { C: 45, Git: 60, Java: 65, Js: 80, MySql: 75, php: 80, python: 40, Vue: 30 } },
+            subImg: [
+              'esp.svg',
+              ],
+            lang: { C: 70, Deno: 0, Git: 70, Java: 85, Js: 85, MySql: 80, MongoDB: 40, "NodeJs + Express": 50, php: 80, python: 50, Vue: 20 }
+          },
           {
             imagen: 'coronavirus.svg',
             subtitulo: 'Proyectos mevn, firebase',
             titulo: 'CoVid-19',
-            desc: 'Descripciones aleatorias',
-            lang: { C: 60, Deno: 10, Git: 80, Java: 70, Js: 90, MySql: 80, MongoDB: 60, NodeJs: 50, php: 90, python: 80, Vue: 70 } }
+            subImg: [
+              'esp.svg',
+              ],
+            lang: { C: 70, Deno: 20, Git: 80, Java: 85, Js: 90, MySql: 90, MongoDB: 60, "NodeJs + Express": 60, php: 90, python: 70, Vue: 70 }
+          },
         ]
       }
     })

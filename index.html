@@ -20,61 +20,31 @@
                 <v-list-item class="ml-n3">
                   <v-list-item-content>
                     <v-list-item-title class="font-weight-bold title">Carlos Domínguez</v-list-item-title>
-                    <v-list-item-subtitle class="font-weight-light">Software Engineer</v-list-item-subtitle>
+                    <v-list-item-subtitle class="font-weight-light">{{profession[lang]}}</v-list-item-subtitle>
                     <v-list-item-subtitle class="font-weight-light mt-7"><v-icon>mdi-gmail</v-icon>crlsdmngz3@gmail.com</v-list-item-subtitle>
-                    <v-list-item-subtitle class="font-weight-bold mt-7"><u>Fluent</u></v-list-item-subtitle>
-                    <v-list class="d-flex justify-center">
-                      <v-img
+                    <v-list-item-subtitle class="font-weight-bold mt-7" v-for="item in flags">
+                      <u class="d-block mb-2">{{item.level[lang]}}</u>
+                        <v-img
                         alt="http://www.freepik.com/"
                         contain
+                        class="d-flex d-inline-flex mx-3"
+                        @click="lang=country.value"
                         height="30"
-                        src="usa.svg"
+                        v-for="country in item.countries"
+                        :src="country.flag"
                         width="30"
-                      >
+                        >
                       </v-img>
-                      <v-img
-                        alt="http://www.freepik.com/"
-                        contain
-                        height="30"
-                        src="esp.svg"
-                        width="30"
-                      >
-                      </v-img>
-                      <v-img
-                        alt="http://www.freepik.com/"
-                        contain
-                        height="30"
-                        src="bra.svg"
-                        width="30"
-                      >
-                      </v-img>
-                    </v-list>
-                    <v-list-item-subtitle class="font-weight-bold mt-7"><u>Basic</u></v-list-item-subtitle>
-                    <v-list class="d-flex justify-center">
-                      <v-img
-                        alt="http://www.freepik.com/"
-                        contain
-                        height="30"
-                        src="it.svg"
-                        width="30"
-                      >
-                      </v-img>
-                      <v-img
-                        alt="http://www.freepik.com/"
-                        contain
-                        height="30"
-                        src="cat.svg"
-                        width="30"
-                      >
-                      </v-img>
-                    </v-list>
+                    </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
             </v-col>
+
             <v-divider vertical></v-divider>
-            <v-col row wrap class="mt-2" cols="12" xs="12" sm="8">
-              <h1 class="font-italic font-weight-medium text-center grey--text text--ligthen-1">
+
+            <v-col cols="12" xs="12" sm="8">
+              <h1 class="text-center">
                 <v-icon>mdi-fingerprint</v-icon>
                 <v-icon>mdi-bike</v-icon>
                 <v-icon>mdi-home-assistant</v-icon>
@@ -82,18 +52,17 @@
               <br><br><br><br>
               <v-row class="ml-3 mb-6 mt-12" row wrap>
                 <v-slider
+                  color="lime"
+                  max="10"
+                  step="1"
+                  thumb-color="none"
+                  thumb-label
+                  thumb-size="130"
+                  tick-size="4"
+                  ticks="always"
+                  :tick-labels="ticksLabels"
                   track-color="yellow"
                   v-model="value"
-                  color="lime"
-                  thumb-label
-                  :thumb-size="130"
-                  thumb-color="none"
-                  :tick-labels="ticksLabels"
-                  tick-size="4"
-                  :max="10"
-                  ticks="always"
-                  step="1"
-                  :vertical="$vuetify.breakpoint.xs"
                 >
                   <template v-slot:thumb-label="item">
                     <v-card class="d-flex" width="300">
@@ -102,9 +71,12 @@
                         size="32"
                         tile
                       >
-                        <v-img :src="array[value].imagen" alt="https://www.flaticon.es/autores/nikita-golubev"></v-img>
+                        <v-img
+                          :src="array[value].imagen"
+                          alt="https://www.flaticon.es/autores/nikita-golubev"
+                        ></v-img>
                       </v-avatar>
-                      <v-card-title>{{array[value].titulo}}</v-card-tile>
+                      <v-card-title>{{array[value].titulo[lang]}}</v-card-tile>
                       <v-card-text
                         class="d-flex flex-row"
                       >
@@ -148,106 +120,100 @@
       vuetify: new Vuetify(),
       data: {
         value: 0,
+        lang: 0,
+        profession: ['Ingeniero de Software', 'Software Engeneer', 'Engenheiro de Software', 'Ingegnere del Software', 'Enginyer de Software'],
+        flags: [
+          {
+            level: ['Fluído', 'Fluent', 'Fluido', 'Fluente', 'Fluid'],
+            countries: [
+              { value: 0, flag: 'esp.svg' },
+              { value: 1, flag: 'usa.svg' },
+              { value: 2, flag: 'bra.svg' }
+            ]
+          },
+          {
+            level: ['Básico', 'Basic', 'Básico', 'Basico', 'Bàsic'],
+            countries: [
+              { value: 3, flag: 'it.svg' },
+              { value: 4, flag: 'cat.svg' }
+            ]
+          }
+        ],
         ticksLabels: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
         array: [
           {
             imagen: 'cerebro.svg',
-            titulo: 'Universidad',
             subtitulo: 'POO, SQL, 23DesignP',
-            subImg: [
-              'ven.svg',
-              ],
+            titulo: ['Universidad', 'University', 'Universidad', 'Universidad', 'Universitat'],
+            subImg: ['ven.svg'],
             lang: { C: 20, Deno: 0, Git: 0, Java: 20, Js: 0, MySql: 10, MongoDB: 0, "NodeJs + Express": 0, php: 20, python: 0, Vue: 0 }
           },
           {
             imagen: 'sensible.svg',
-            titulo: 'FullStack Developer',
             subtitulo: 'Lex-Tempus',
-            subImg: [
-              'ven.svg',
-              ],
+            titulo: ['FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer'],
+            subImg: ['ven.svg'],
             lang: { C: 30, Deno: 0, Git: 0, Java: 30, Js: 10, MySql: 20, MongoDB: 0, "NodeJs + Express": 0, php: 30, python: 0, Vue: 0 }
           },
           {
             imagen: 'codigo.svg',
-            subtitulo: 'Ingeniero de Software',
-            titulo: 'Título',
-            subImg: [
-              'ven.svg',
-              ],
+            subtitulo: 'Ing. de Software',
+            titulo: ['Título', 'Degree', 'Diploma', 'Laurea', 'Títol'],
+            subImg: ['ven.svg',],
             lang: { C: 40, Deno: 0, Git: 0, Java: 40, Js: 20, MySql: 30, MongoDB: 0, "NodeJs + Express": 0, php: 40, python: 0, Vue: 0 }
           },
           {
             imagen: 'travel.svg',
-            titulo: 'Mochileando',
-            subImg: [
-              'bra.svg',
-              'ven.svg',
-              ],
+            titulo: ['Mochilero', 'Backpacker', 'Mochileiro', 'Saccopelista', 'Motxiller'],
+            subImg: ['bra.svg','ven.svg'],
             lang: { C: 40, Deno: 0, Git: 0, Java: 40, Js: 20, MySql: 30, MongoDB: 0, "NodeJs + Express": 0, php: 40, python: 0, Vue: 0 }
           },          
           {
             imagen: 'bug.svg',
-            titulo: 'FullStack Developer',
             subtitulo: 'HyperPBX',
-            subImg: [
-              'arg.svg',
-              ],
+            titulo: ['FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer'],
+            subImg: ['arg.svg'],
             lang: { C: 50, Deno: 0, Git: 30, Java: 50, Js: 30, MySql: 40, MongoDB: 0, "NodeJs + Express": 0, php: 50, python: 0, Vue: 0 }
           },          
           {
             imagen: 'bug.svg',
-            titulo: 'FullStack Developer',
             subtitulo: 'HyperPBX',
-            subImg: [
-              'arg.svg',
-              ],
+            titulo: ['FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer'],
+            subImg: ['arg.svg'],
             lang: { C: 60, Deno: 0, Git: 40, Java: 60, Js: 60, MySql: 50, MongoDB: 0, "NodeJs + Express": 10, php: 60, python: 10, Vue: 0 }
           },
           {
             imagen: 'travel.svg',
-            titulo: 'Mochileando',
-            subImg: [
-              'arg.svg',
-              'bra.svg',
-              'chi.svg',
-              ],
+            titulo: ['Mochilero', 'Backpacker', 'Mochileiro', 'Saccopelista', 'Motxiller'],
+            subImg: ['arg.svg','bra.svg','chi.svg'],
             lang: { C: 60, Deno: 0, Git: 40, Java: 60, Js: 60, MySql: 50, MongoDB: 0, "NodeJs + Express": 10, php: 60, python: 10, Vue: 0 }
           },
           {
             imagen: 'tuerca.svg',
             subtitulo: 'Ministerio de Educación',
-            titulo: 'App Developer',
-            subImg: [
-              'arg.svg',
-              ],
+            titulo: ['App Developer', 'App Developer', 'App Developer', 'App Developer', 'App Developer'],
+            subImg: ['arg.svg'],
             lang: { C: 60, Deno: 0, Git: 50, Java: 70, Js: 70, MySql: 60, MongoDB: 20, "NodeJs + Express": 20, php: 70, python: 30, Vue: 0 }
           },
           {
             imagen: 'tuerca.svg',
             subtitulo: 'Ministerio de Educación',
-            titulo: 'App Developer',
-            subImg: [
-              'arg.svg',
-              ],
+            titulo: ['App Developer', 'App Developer', 'App Developer', 'App Developer', 'App Developer'],
+            subImg: ['arg.svg'],
             lang: { C: 60, Deno: 0, Git: 60, Java: 80, Js: 80, MySql: 70, MongoDB: 30, "NodeJs + Express": 30, php: 80, python: 40, Vue: 0 }
           },
           {
             imagen: 'proceso.svg',
             subtitulo: 'MundoEstudiante',
-            titulo: 'Profesor de Prog',
-            subImg: [
-              'esp.svg',
-              ],
+            titulo: ['Profesor Prog', 'Dev Teacher', 'Professor Prog', 'Professore Prog', 'Professor Prog'],
+            subImg: ['esp.svg'],
             lang: { C: 70, Deno: 0, Git: 70, Java: 85, Js: 85, MySql: 80, MongoDB: 40, "NodeJs + Express": 50, php: 80, python: 50, Vue: 20 }
           },
           {
             imagen: 'coronavirus.svg',
             subtitulo: 'Proyectos mevn, firebase',
-            titulo: 'CoVid-19',
-            subImg: [
-              'esp.svg',
-              ],
+            titulo: ['CoVid-19', 'CoVid-19', 'CoVid-19', 'CoVid-19', 'CoVid-19'],
+            subImg: ['esp.svg'],
             lang: { C: 70, Deno: 20, Git: 80, Java: 85, Js: 90, MySql: 90, MongoDB: 60, "NodeJs + Express": 60, php: 90, python: 70, Vue: 70 }
           },
         ]

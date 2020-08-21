@@ -14,8 +14,8 @@
           <v-row>
             <v-col class="text-center" cols="12" xs="12" sm="3">
               <v-list class="d-flex flex-column">
-                <v-list-item-avatar size="150">
-                  <img src="perfil.svg" alt="cdmngz">
+                <v-list-item-avatar size="120">
+                  <img src="pic.jpg">
                 </v-list-item-avatar>
                 <v-list-item class="ml-n3">
                   <v-list-item-content>
@@ -30,8 +30,9 @@
                         class="d-flex d-inline-flex mx-3"
                         @click="lang=country.value"
                         height="30"
-                        v-for="country in item.countries"
                         :src="country.flag"
+                        style="cursor: pointer"
+                        v-for="country in item.countries"
                         width="30"
                         >
                       </v-img>
@@ -153,7 +154,7 @@
           'ArrowFunctions, Async/Await, Modules',//Js
           'SELECT, FROM, WHERE, GROUP BY, JOIN, HAVING, LIMIT, DROP TABLE',//MySql
           'find().sort().limit(), $gt, $lte',//MongoDB
-          'npm, cors, authToken, middleware, babel, axios',// Node
+          'npm, cors, jwt, middleware, axios',// Node
           'var_dumb, merge, fopen, echo 3*(print 5)+3;',//Php
           'functions, objects, file handling',//Python
           'Hooks, Components, JSX',//React
@@ -223,17 +224,17 @@
           },
           {
             imagen: 'proceso.svg',
-            subtitulo: 'MundoEstudiante',
+            subtitulo: 'Mundo Estudiante',
             titulo: ['Profesor Prog', 'Dev Teacher', 'Professor Prog', 'Professore Prog', 'Professor Prog'],
             subImg: ['esp.svg'],
             lang: { C: 70, Deno: 0, Git: 70, Java: 85, Js: 85, MySql: 80, MongoDB: 40, "NodeJs + Express": 50, php: 80, python: 50, React: 0, Vue: 20 }
           },
           {
             imagen: 'coronavirus.svg',
-            subtitulo: 'Proyectos mevn, firebase',
+            subtitulo: 'Proyectos mevn, firebase ',
             titulo: ['CoVid-19', 'CoVid-19', 'CoVid-19', 'CoVid-19', 'CoVid-19'],
             subImg: ['esp.svg'],
-            lang: { C: 70, Deno: 20, Git: 80, Java: 85, Js: 90, MySql: 90, MongoDB: 60, "NodeJs + Express": 60, php: 90, python: 70, React: 30, Vue: 70 }
+            lang: { C: 70, Deno: 20, Git: 80, Java: 85, Js: 95, MySql: 90, MongoDB: 60, "NodeJs + Express": 70, php: 90, python: 70, React: 30, Vue: 80 }
           },
         ]
       }

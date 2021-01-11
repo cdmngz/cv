@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link href="style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 <body>
   <div id="app">
+    <transition name="fade">
+      <div class="loader" v-if="loader">
+        <div class="spinner">
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+      </div>
+    </transition>
     <v-app>
       <v-content>
         <v-container>
@@ -21,7 +35,7 @@
                   <v-list-item-content>
                     <v-list-item-title class="font-weight-bold title">Carlos Domínguez</v-list-item-title>
                     <v-list-item-subtitle class="font-weight-light">{{profession[lang]}}</v-list-item-subtitle>
-                    <v-list-item-subtitle class="font-weight-light mt-7"><v-icon>mdi-gmail</v-icon>crlsdmngz3@gmail.com</v-list-item-subtitle>
+                    <v-list-item-subtitle class="font-weight-light mt-7">📧 crlsdmngz3@gmail.com</v-list-item-subtitle>
                     <v-list-item-subtitle class="font-weight-bold mt-7" v-for="item in flags">
                       <span class="d-block mb-1">{{item.level}}</span>
                         <v-img
@@ -45,11 +59,7 @@
             <v-divider vertical></v-divider>
 
             <v-col cols="12" xs="12" sm="8">
-              <h1 class="text-center">
-                <v-icon>mdi-fingerprint</v-icon>
-                <v-icon>mdi-bike</v-icon>
-                <v-icon>mdi-home-assistant</v-icon>
-              </h1>
+              <h3 class="text-center">🌏🔬👨🏻‍💻</h3>
               <br><br><br><br>
               <v-row class="ml-3 mb-6 mt-12" row wrap>
                 <v-slider
@@ -99,7 +109,7 @@
                 </v-slider>
               </v-row>
               <v-row no-gutters>
-                <v-col v-for="(item, label, index) in array[value].lang" cols="12" xs="12" class="ma-3">
+                <v-col v-for="(item, label, index) in array[value].lang" cols="6" class="pa-3">
                   <div cols="12" xs="12">
                     <v-tooltip right>
                       <template v-slot:activator="{ on }">
@@ -125,6 +135,7 @@
       el: '#app',
       vuetify: new Vuetify(),
       data: {
+        loader: true,
         value: 0,
         lang: 0,
         profession: ['Ingeniero de Software', 'Software Engeneer', 'Engenheiro de Software', 'Ingegnere del Software', 'Enginyer de Software'],
@@ -149,14 +160,15 @@
         infolang: [
           '#include, functions, int *, struct, c++ class', //C
           'await fetch, --allow-[net-read], for await, WebAssembly, Workers',//Deno
+          'Firestore, auth, analytics, cron, version',//"gCloud + Firebase"
           'checkout -b branch, log, merge --no-ff, reverse',//Git
           'abstract, extends, interface, implements, static',//Java
           'ArrowFunctions, Async/Await, Modules',//Js
           'SELECT, FROM, WHERE, GROUP BY, JOIN, HAVING, LIMIT, DROP TABLE',//MySql
           'find().sort().limit(), $gt, $lte',//MongoDB
           'npm, cors, jwt, middleware, axios',// Node
-          'var_dumb, merge, fopen, echo 3*(print 5)+3;',//Php
-          'functions, objects, file handling',//Python
+          'var_dumb, merge, fopen, echo 3*(print 5)+3;',//PHP
+          'Flask, SqlAlchemy, FastApi',//Python
           'Hooks, Components, JSX',//React
           'vueCLI, Vuex, vuetify, lifeCycle'//vue
           ],
@@ -166,77 +178,80 @@
             subtitulo: 'POO, SQL, 23DesignP',
             titulo: ['Universidad', 'University', 'Universidad', 'Universidad', 'Universitat'],
             subImg: ['ven.svg'],
-            lang: { C: 20, Deno: 0, Git: 0, Java: 20, Js: 0, MySql: 10, MongoDB: 0, "NodeJs + Express": 0, php: 20, python: 0, React: 0, Vue: 0 }
+            lang: { C: 20, Deno: 0, "gCloud + Firebase": 0, Git: 0, Java: 20, Js: 0, MySql: 10, MongoDB: 0, "NodeJs + Express": 0, PHP: 20, Python: 0, React: 0, Vue: 0 }
           },
           {
             imagen: 'sensible.svg',
             subtitulo: 'Lex-Tempus',
             titulo: ['FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer'],
             subImg: ['ven.svg'],
-            lang: { C: 30, Deno: 0, Git: 0, Java: 30, Js: 10, MySql: 20, MongoDB: 0, "NodeJs + Express": 0, php: 30, python: 0, React: 0, Vue: 0 }
+            lang: { C: 30, Deno: 0, "gCloud + Firebase": 0, Git: 0, Java: 30, Js: 10, MySql: 20, MongoDB: 0, "NodeJs + Express": 0, PHP: 30, Python: 0, React: 0, Vue: 0 }
           },
           {
             imagen: 'codigo.svg',
             subtitulo: 'Ing. de Software',
             titulo: ['Título', 'Degree', 'Diploma', 'Laurea', 'Títol'],
             subImg: ['ven.svg',],
-            lang: { C: 40, Deno: 0, Git: 0, Java: 40, Js: 20, MySql: 30, MongoDB: 0, "NodeJs + Express": 0, php: 40, python: 0, React: 0, Vue: 0 }
+            lang: { C: 40, Deno: 0, "gCloud + Firebase": 0, Git: 0, Java: 40, Js: 20, MySql: 30, MongoDB: 0, "NodeJs + Express": 0, PHP: 40, Python: 0, React: 0, Vue: 0 }
           },
           {
             imagen: 'travel.svg',
             titulo: ['Mochilero', 'Backpacker', 'Mochileiro', 'Saccopelista', 'Motxiller'],
             subImg: ['bra.svg','ven.svg'],
-            lang: { C: 40, Deno: 0, Git: 0, Java: 40, Js: 20, MySql: 30, MongoDB: 0, "NodeJs + Express": 0, php: 40, python: 0, React: 0, Vue: 0 }
+            lang: { C: 40, Deno: 0, "gCloud + Firebase": 0, Git: 0, Java: 40, Js: 20, MySql: 30, MongoDB: 0, "NodeJs + Express": 0, PHP: 40, Python: 0, React: 0, Vue: 0 }
           },          
           {
             imagen: 'bug.svg',
             subtitulo: 'HyperPBX',
             titulo: ['FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer'],
             subImg: ['arg.svg'],
-            lang: { C: 50, Deno: 0, Git: 30, Java: 50, Js: 30, MySql: 40, MongoDB: 0, "NodeJs + Express": 0, php: 50, python: 0, React: 0, Vue: 0 }
+            lang: { C: 50, Deno: 0, "gCloud + Firebase": 0, Git: 30, Java: 50, Js: 30, MySql: 40, MongoDB: 0, "NodeJs + Express": 0, PHP: 50, Python: 0, React: 0, Vue: 0 }
           },          
           {
             imagen: 'bug.svg',
             subtitulo: 'HyperPBX',
             titulo: ['FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer'],
             subImg: ['arg.svg'],
-            lang: { C: 60, Deno: 0, Git: 40, Java: 60, Js: 60, MySql: 50, MongoDB: 0, "NodeJs + Express": 10, php: 60, python: 10, React: 0, Vue: 0 }
+            lang: { C: 60, Deno: 0, "gCloud + Firebase": 0, Git: 40, Java: 60, Js: 60, MySql: 50, MongoDB: 0, "NodeJs + Express": 10, PHP: 60, Python: 10, React: 0, Vue: 0 }
           },
           {
             imagen: 'travel.svg',
             titulo: ['Mochilero', 'Backpacker', 'Mochileiro', 'Saccopelista', 'Motxiller'],
             subImg: ['arg.svg','bra.svg','chi.svg'],
-            lang: { C: 60, Deno: 0, Git: 40, Java: 60, Js: 60, MySql: 50, MongoDB: 0, "NodeJs + Express": 10, php: 60, python: 10, React: 0, Vue: 0 }
+            lang: { C: 60, Deno: 0, "gCloud + Firebase": 0, Git: 50, Java: 60, Js: 60, MySql: 50, MongoDB: 0, "NodeJs + Express": 10, PHP: 60, Python: 10, React: 0, Vue: 0 }
           },
           {
             imagen: 'tuerca.svg',
             subtitulo: 'Ministerio de Educación',
-            titulo: ['App Developer', 'App Developer', 'App Developer', 'App Developer', 'App Developer'],
+            titulo: ['FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer'],
             subImg: ['arg.svg'],
-            lang: { C: 60, Deno: 0, Git: 50, Java: 70, Js: 70, MySql: 60, MongoDB: 20, "NodeJs + Express": 20, php: 70, python: 30, React: 0, Vue: 0 }
+            lang: { C: 60, Deno: 0, "gCloud + Firebase": 0, Git: 60, Java: 70, Js: 70, MySql: 60, MongoDB: 20, "NodeJs + Express": 20, PHP: 70, Python: 30, React: 0, Vue: 0 }
           },
           {
             imagen: 'tuerca.svg',
             subtitulo: 'Ministerio de Educación',
-            titulo: ['App Developer', 'App Developer', 'App Developer', 'App Developer', 'App Developer'],
+            titulo: ['FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer'],
             subImg: ['arg.svg'],
-            lang: { C: 60, Deno: 0, Git: 60, Java: 80, Js: 80, MySql: 70, MongoDB: 30, "NodeJs + Express": 30, php: 80, python: 40, React: 0, Vue: 0 }
+            lang: { C: 60, Deno: 0, "gCloud + Firebase": 0, Git: 70, Java: 80, Js: 80, MySql: 70, MongoDB: 30, "NodeJs + Express": 40, PHP: 80, Python: 40, React: 0, Vue: 0 }
           },
           {
             imagen: 'proceso.svg',
             subtitulo: 'Mundo Estudiante',
             titulo: ['Profesor Prog', 'Dev Teacher', 'Professor Prog', 'Professore Prog', 'Professor Prog'],
             subImg: ['esp.svg'],
-            lang: { C: 70, Deno: 0, Git: 70, Java: 85, Js: 85, MySql: 80, MongoDB: 40, "NodeJs + Express": 50, php: 80, python: 50, React: 0, Vue: 20 }
+            lang: { C: 70, Deno: 0, "gCloud + Firebase": 20, Git: 80, Java: 80, Js: 85, MySql: 80, MongoDB: 40, "NodeJs + Express": 60, PHP: 80, Python: 60, React: 10, Vue: 30 }
           },
           {
-            imagen: 'coronavirus.svg',
-            subtitulo: 'Proyectos mevn, firebase ',
-            titulo: ['CoVid-19', 'CoVid-19', 'CoVid-19', 'CoVid-19', 'CoVid-19'],
+            imagen: 'techarm.svg',
+            subtitulo: 'CAS Training',
+            titulo: ['FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer', 'FullStack Developer'],
             subImg: ['esp.svg'],
-            lang: { C: 70, Deno: 20, Git: 80, Java: 85, Js: 95, MySql: 90, MongoDB: 60, "NodeJs + Express": 70, php: 90, python: 70, React: 30, Vue: 80 }
+            lang: { C: 70, Deno: 20, "gCloud + Firebase": 80, Git: 90, Java: 80, Js: 95, MySql: 90, MongoDB: 70, "NodeJs + Express": 80, PHP: 80, Python: 90, React: 30, Vue: 90 }
           },
         ]
+      },
+      mounted() {
+        setTimeout(() => { this.loader = false }, 2300)
       }
     })
   </script>
